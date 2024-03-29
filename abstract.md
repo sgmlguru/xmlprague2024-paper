@@ -1,4 +1,4 @@
-# VIN Numbers, iXML, and DITA
+# It's Useful After All - VIN Numbers, DITA, and iXML
 
 Cars today are identified using so-called Vehicle Identifier Numbers (VINs for short). These are usually alphanumeric strings between 11 and 17 characters and are capable of identifying the vehicle's configuration as sold - model year, engine, body - but also the vehicle as an individual. The VIN has a variety of uses, from identifying compatible accessories to vehicle ranges affected by a technical bulletin, and so on. For repair shops, then, the use cases are obvious - it becomes easy to plan a service, from understanding what needs to be serviced and when to acquiring spare parts and consumables in time for the service occasion.
 
