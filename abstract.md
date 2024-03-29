@@ -75,29 +75,50 @@ The author has designed and helped implement one such portal application for an 
 The user interface for listing and filtering the DITA is done in XForms, with the raw file listings in XML format like so:
 
 ```XML
-<collection name="/db/test/content" created="2023-01-03T10:19:57.112+01:00" owner="admin"
-    group="dba" permissions="rwxr-xr-x" uri="/db/test/content">
+<collection 
+	name="/db/test/content" 
+	created="2023-01-03T10:19:57.112+01:00" 
+	owner="admin"
+    group="dba" 
+    permissions="rwxr-xr-x" 
+    uri="/db/test/content">
     
     ...
 
-    <file xmlns:exist="http://exist.sourceforge.net/NS/exist"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml" selected="" type="topic"
+    <file 
+    	selected="" 
+        type="topic"
         uri="/db/test/content/dita-examples/01/second_portal_topic.dita"
-        name="second_portal_topic.dita" created="2023-01-03T10:20:13.072+01:00"
-        last-modified="2023-01-03T10:20:13.072+01:00" id="my_second_portal_topic" outputclass=""
-        dita-content-type="content" product="A B" audience="D E"
-        root-profiles="product(A B) audience(D E)" excluded="false" include="true"
+        name="second_portal_topic.dita" 
+        created="2023-01-03T10:20:13.072+01:00"
+        last-modified="2023-01-03T10:20:13.072+01:00" 
+        id="my_second_portal_topic" 
+        outputclass=""
+        dita-content-type="content" 
+        product="A B" 
+        audience="D E"
+        root-profiles="product(A B) audience(D E)" 
+        include="true"
         include-profiles="product(B)">
         <title>Topic 2</title>
     </file>
     
-    <file xmlns:exist="http://exist.sourceforge.net/NS/exist"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml" selected="" type="topic"
-        uri="/db/test/content/dita-examples/02/topic_3.dita" name="topic_3.dita"
-        created="2023-01-03T10:20:12.595+01:00" last-modified="2023-01-03T10:20:12.595+01:00"
-        id="topic_3" outputclass="" dita-content-type="content" product="A" audience="novice"
-        root-profiles="product(A) audience(novice)" excluded="true" include="false"
-        exclude-profiles="product" include-profiles="">
+    <file 
+    	selected="" 
+        type="topic"
+        uri="/db/test/content/dita-examples/02/topic_3.dita" 
+        name="topic_3.dita"
+        created="2023-01-03T10:20:12.595+01:00" 
+        last-modified="2023-01-03T10:20:12.595+01:00"
+        id="topic_3" 
+        outputclass="" 
+        dita-content-type="content" 
+        product="A" 
+        audience="novice"
+        root-profiles="product(A) audience(novice)" 
+        include="false"
+        exclude-profiles="product" 
+        include-profiles="">
         <title>Topic 3</title>
     </file>
     
