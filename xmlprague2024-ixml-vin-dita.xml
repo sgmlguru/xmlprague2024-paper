@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://docbook.org/xml/5.1/rng/docbook.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="http://docbook.org/xml/5.1/sch/docbook.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<article xmlns="http://docbook.org/ns/docbook"
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.1">
+    <info>
+        <title>It's Useful After All - VIN Numbers, DITA, and iXML</title>
+        <author>
+            <personname><firstname>Ari</firstname><surname>Nordström</surname></personname>
+        </author>
+    </info>
+    <section>
+        <title>Intro</title>
+        <section>
+            <title>VIN Numbers</title>
+            <para>Cars today are identified using so-called Vehicle Identifier Numbers (VINs for
+                short). These are usually alphanumeric strings between 11 and 17 characters and are
+                capable of identifying the vehicle's configuration as sold - model year, engine,
+                body - but also the vehicle as an individual. The VIN has a variety of uses, from
+                identifying compatible accessories to vehicle ranges affected by a technical
+                bulletin, and so on. For repair shops, then, the use cases are obvious - it becomes
+                easy to plan a service, from understanding what needs to be serviced and when to
+                acquiring spare parts and consumables in time for the service occasion.</para>
+        </section>
+        <section>
+            <title>Service Documentation</title>
+            <para>But the VIN can also help locate the service documentation applicable to the
+                vehicle if the documentation is marked up accordingly. </para>
+            <para>Most car manufacturers today have been around for a long time, which means an
+                ever-growing variety of available models, variants, and configurations, much of it
+                changing from one year to the next and thus requiring a growing set of spares, tools
+                and consumables. Similarly, the required service documentation grows in size as the
+                applicable service procedures and parts lists change or are replaced for each
+                passing model year.</para>
+        </section>
+    </section>
+    <section>
+        <title>DITA</title>
+        <para>Much of today's service documentation is authored in XML format, allowing for the
+            reuse of shared procedures while also identifying model- and variant-specific tasks.
+            This is done by <quote>profiling</quote> the XML - using markup to state what a specific
+            element applies to. For example, a car model may come in petrol and diesel engine
+            variants, meaning that the service information specific to the engines need to be marked
+            up accordingly but much of the other documentation is shared between the
+            variants.</para>
+        <para>The DITA specification uses a topic-based approach where each topic is meant to cover
+            a single set of information such as a description of a component, a disassembly of that
+            component, or a parts list applicable to that component. The idea then is that topics
+            are authored for all components that are required to fully build a product. The topics
+            are assembled to full "books" using DITA maps, essentially a method to assemble the
+            topics into the required chapters and sections to provide, say, a complete illustrated
+            parts catalogue.</para>
+        <section>
+            <title>Profiling in DITA</title>
+            <para>But importantly, DITA topics - and their individual elements - can be profiled
+                using profiling attributes available for every DITA structure. The specification
+                includes properties such as "product", "platform", and "audience" but can also be
+                extended to, say "model year" or "engine type". We can identify specific topics as
+                applying only to a whitespace-separated list of engine variants, model years, or
+                markets. Or something else, including a combination of profiles. And of course, if a
+                topic is not profiled, it applies to everything.</para>
+            <para>Technical documentation that is profiled using model and variant information also
+                identifiable using a VIN can then be made to match a VIN that expresses a specific
+                configuration. For example, a disassembly task might have this root element:</para>
+            <programlisting>&lt;task modelYear="2022" engineType="petrol-EU6" drive="LHD" platform="commercial" product="station-wagon">
+	...
+&lt;/task></programlisting>
+            <para>This matches a commercial vehicle, a MY 2022, left-hand drive station wagon with a
+                petrol engine for EU. The matching VIN number is a 17-character string that looks
+                something like this: <code>SC6GN1BA?NF123456</code>.</para>
+        </section>
+    </section>
+    <section>
+        <title>Profiling and VINs</title>
+        <para>Comparing the VIN - <code>SC6GN1BA?NF123456</code>, for example -  with a DITA profile
+            is where it gets interesting.</para>
+        <section>
+            <title>The VIN As A Grammar</title>
+            <itemizedlist>
+                <para>The VIN string is position-driven, with the various positions encoding vehicle
+                    information:</para>
+                <listitem>
+                    <para>World Manufacturing Identification</para>
+                </listitem>
+                <listitem>
+                    <para>Vehicle Type</para>
+                </listitem>
+                <listitem>
+                    <para>Body Type</para>
+                </listitem>
+                <listitem>
+                    <para>Engine Type</para>
+                </listitem>
+                <listitem>
+                    <para>Drive</para>
+                </listitem>
+                <listitem>
+                    <para>Check Digit</para>
+                </listitem>
+                <listitem>
+                    <para>Year</para>
+                </listitem>
+                <listitem>
+                    <para>Plant</para>
+                </listitem>
+                <listitem>
+                    <para>Sequential Number</para>
+                </listitem>
+            </itemizedlist>
+            <!--TBA VIN table-->
+            <para>The allowed values are specified for each group and can be expressed as a grammar.
+                EBNF notation, for example, has been used by manufacturers in the past, even though
+                most of them default to an Excel spreadsheet or an ERP system.</para>
+        </section>
+        <section>
+            <title>iXML</title>
+            <para>For pointy-bracket professionals, however, there is <link
+                    xlink:href="https://invisiblexml.org/">Invisible XML</link>, iXML for
+                short:</para>
+            <blockquote>
+                <para>Invisible XML is a language for describing the implicit structure of data, and
+                    a set of technologies for making that structure explicit as XML markup.</para>
+            </blockquote>
+            <para>iXML allows us to write <emphasis role="italic">grammars</emphasis> for those
+                various implicit structures and then use an iXML implementation to serialise an
+                instance of that grammar in XML format.</para>
+            <!--TBA iXML VIN grammar-->
+            <para>Thus, the VIN string as defined for a specific manufacturer can be expressed as an
+                iXML grammar, meaning that a string such as <code>SC6GN1BA?NF123456</code> can be
+                output in XML:</para>
+            <programlisting>&lt;vin>
+   &lt;manufacturer-id>SC6&lt;/manufacturer-id>
+   &lt;vehicleType>
+      &lt;commercial-vehicle>GN&lt;/commercial-vehicle>
+   &lt;/vehicleType>
+   &lt;platform>
+      &lt;sv>1&lt;/sv>
+   &lt;/platform>
+   &lt;engineType>
+      &lt;petrol>B&lt;/petrol>
+   &lt;/engineType>
+   &lt;drive>
+      &lt;lhd>A&lt;/lhd>
+   &lt;/drive>
+   &lt;check-digit>?&lt;/check-digit>
+   &lt;modelYear>
+      &lt;y22>N&lt;/y22>
+   &lt;/modelYear>
+   &lt;plant>F&lt;/plant>
+   &lt;sequence-number>123456&lt;/sequence-number>
+&lt;/vin></programlisting>
+            <para>The XML is still little more than an XML version of the VIN, but already much more
+                usable.</para>
+        </section>
+    </section>
+    <section>
+        <title>Publishing</title>
+        <para>But let's briefly go back to that technical documentation. The days of publishing the
+            documentation on paper are long gone. Instead, the documentation is commonly published
+            electronically in a portal application and made accessible to potentially any repair
+            shop, as long as they have an internet connection and a browser.</para>
+        <section>
+            <title>Online Portal</title>
+            <para>The author has designed and helped implement one such portal application for an
+                automotive manufacturer. The vehicle service documentation is authored in DITA and
+                exported as-is to an XML database, eXist-db. A portal application built on top of
+                eXist-db lists the available documentation, provides search and filtering, and
+                allows for on-the-fly publishing of the DITA content. Importantly, the topics are
+                listed and filtered as XML, unchanged, providing direct access to the DITA profiling
+                information.</para>
+        </section>
+        <section>
+            <title>Listing Topics</title>
+            <!--TBA UI for listing resources-->
+            <para>The user interface for listing and filtering the DITA is done in XForms, with the
+                raw file listings in XML format like so:</para>
+            <programlisting>&lt;collection 
+	name="/db/test/content" 
+	created="2023-01-03T10:19:57.112+01:00" 
+	owner="admin"
+    group="dba" 
+    permissions="rwxr-xr-x" 
+    uri="/db/test/content">
+    
+    ...
+
+    &lt;file 
+    	selected="" 
+        type="topic"
+        uri="/db/test/content/dita-examples/01/second_portal_topic.dita"
+        name="second_portal_topic.dita" 
+        created="2023-01-03T10:20:13.072+01:00"
+        last-modified="2023-01-03T10:20:13.072+01:00" 
+        id="my_second_portal_topic" 
+        outputclass=""
+        dita-content-type="content" 
+        product="A B" 
+        audience="D E"
+        root-profiles="product(A B) audience(D E)" 
+        include="true"
+        include-profiles="product(B)">
+        &lt;title>Topic 2&lt;/title>
+    &lt;/file>
+    
+    &lt;file 
+    	selected="" 
+        type="topic"
+        uri="/db/test/content/dita-examples/02/topic_3.dita" 
+        name="topic_3.dita"
+        created="2023-01-03T10:20:12.595+01:00" 
+        last-modified="2023-01-03T10:20:12.595+01:00"
+        id="topic_3" 
+        outputclass="" 
+        dita-content-type="content" 
+        product="A" 
+        audience="novice"
+        root-profiles="product(A) audience(novice)" 
+        include="false"
+        exclude-profiles="product" 
+        include-profiles="">
+        &lt;title>Topic 3&lt;/title>
+    &lt;/file>
+    
+    ...
+    
+    &lt;profiles>
+        &lt;product>
+            &lt;value>B&lt;/value>
+        &lt;/product>
+        &lt;platform/>
+        &lt;audience/>
+    &lt;/profiles>
+&lt;/collection></programlisting>
+            <para>This lists two topics (the <code>file</code> element is exactly one listed topic).
+                If you look carefully, you'll note that the first one includes the attribute
+                    <code>product="A B"</code>. This says that the topic represented by the
+                    <code>file</code> element and referenced in
+                    <code>uri="/db/test/content/dita-examples/01/second_portal_topic.dita"</code>
+                applies to products A and B.</para>
+            <para>The second <code>file</code> identifies a topic
+                    (<code>uri="/db/test/content/dita-examples/02/topic_3.dita"</code>) that applies
+                to product A only, as stated in <code>product="A"</code>.</para>
+        </section>
+        <section>
+            <title>Filtering the List</title>
+            <!--TBA filtering UI-->
+            <para>Finally, the above listing concludes with a <code>profiles</code>
+                structure:</para>
+            <programlisting>&lt;profiles>
+    &lt;product>
+        &lt;value>B&lt;/value>
+    &lt;/product>
+    &lt;platform/>
+    &lt;audience/>
+&lt;/profiles></programlisting>
+            <para>This is an XML fragment that is the result of a filter selected elsewhere in the
+                XForm and then applied to the file listing. It essentially says "show only the
+                topics applicable to product B" and if you now check the first of the two
+                    <code>file</code> elements, you'll spot the attribute
+                    <code>include="true"</code>. The second <code>file</code> has
+                    <code>include="false"</code>. These are both inserted as a result of applying
+                the <code>profiles</code> filter.</para>
+        </section>
+        <section>
+            <title>Filtering with a VIN</title>
+            <para>Now, that filter - the <code>profiles</code> was created using an XForm dropdown
+                list, but can easily be created by other means. For example, given a VIN string, we
+                can serialise that string as XML using an iXML grammar and an iXML engine, and then
+                convert the XML to the <code>profiles</code> format above and apply that to the file
+                listing.</para>
+            <!--TBA VIN input field-->
+        </section>
+        <section>
+            <title>Granularity</title>
+            <para>The above filters the file listing, meaning that we limit the list of DITA topics
+                (and maps; they are not shown above but part of the XML format, too) to only those
+                topics that match the filter. DITA, however, can be profiled on any element,
+                allowing us to mark up fragments of the topic. For example, we might identify a step
+                as only applicable to a specific engine type. If the topic was then published using
+                that profile, the step would be included. If a conflicting profile was used, the
+                step would be excluded.</para>
+            <!--TBA Granularity in a topic (steps, images, etc)-->
+        </section>
+        <section>
+            <title>DITAVAL Publishing</title>
+            <para>DITA defines an XML-based filtering format known as "DITAVAL", used by including
+                the filter alongside the topic when publishing. When publishing a listed topic, the
+                portal application converts the <code>profiles</code> XML to the DITAVAL format and
+                provides the DITAVAL filter to the DITA publishing process alongside the
+                topic.</para>
+            <para>Similarly, we can convert the XML-serialised VIN iXML to DITAVAL format and bypass
+                the file listing and filtering functionality.</para>
+        </section>
+    </section>
+    <section>
+        <title>Additional Features</title>
+        <para>And finally, we can go in the "other direction" - we can use portal functionality to
+            create a DITA filter, a set of profiles, and convert that set to a series of matching
+            VIN strings. This is useful when wanting to know what VIN ranges match vehicles with
+            specific variants, model years, and so on.</para>
+        <!--TBA further examples (diagnostics, etc)-->
+    </section>
+    <section>
+        <title>In Conclusion</title>
+        <!--TBA thanks and further work-->
+    </section>
+</article>
