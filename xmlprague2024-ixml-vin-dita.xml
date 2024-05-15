@@ -171,7 +171,6 @@
         </section>
         <section>
             <title>Listing Topics</title>
-            <!--TBA UI for listing resources-->
             <para>The user interface for listing and filtering the DITA is done in XForms, with the
                 raw file listings in XML format like so:</para>
             <programlisting>&lt;collection 
@@ -240,11 +239,22 @@
             <para>The second <code>file</code> identifies a topic
                     (<code>uri="/db/test/content/dita-examples/02/topic_3.dita"</code>) that applies
                 to product A only, as stated in <code>product="A"</code>.</para>
+            <para>The UI that presents the file list looks like this:</para>
+            <figure>
+                <title>File Browser UI</title>
+                <mediaobject>
+                    <imageobject>
+                        <imagedata fileref="img/portal-ui.png" width="100%"/>
+                    </imageobject>
+                </mediaobject>
+            </figure>
+            <para>This is simply an XForm representation. Let's have a look at the filtering
+                capabilities on the left-hand side.</para>
         </section>
         <section>
             <title>Filtering the List</title>
             <!--TBA filtering UI-->
-            <para>Finally, the above listing concludes with a <code>profiles</code>
+            <para>The above file listing XML fragment concludes with a <code>profiles</code>
                 structure:</para>
             <programlisting>&lt;profiles>
     &lt;product>
@@ -260,6 +270,24 @@
                     <code>include="true"</code>. The second <code>file</code> has
                     <code>include="false"</code>. These are both inserted as a result of applying
                 the <code>profiles</code> filter.</para>
+            <para>The XForm has a standard way of entering filtering values to the
+                    <code>profiles</code> structure. The profile attributes actually in use in the
+                database are generated as a list and presented to the user in a dropdown list.
+                Selecting a profiling attribute from the list then provides its available
+                values:</para>
+            <figure>
+                <title>Profiling Values</title>
+                <mediaobject>
+                    <imageobject>
+                        <imagedata fileref="img/filtering-values.png"/>
+                    </imageobject>
+                </mediaobject>
+            </figure>
+            <para>Here, the profiling attribute <code>engineType</code><footnote>
+                    <para>The portal can map a profiling attribute name to a display value, but that
+                        feature is not used here.</para>
+                </footnote> is used with a single value, <quote>Petrol_EU4</quote>, but the live
+                database obviously contains more.</para>
         </section>
         <section>
             <title>Filtering with a VIN</title>
@@ -268,7 +296,18 @@
                 can serialise that string as XML using an iXML grammar and an iXML engine, and then
                 convert the XML to the <code>profiles</code> format above and apply that to the file
                 listing.</para>
-            <!--TBA VIN input field-->
+            <figure xml:id="vin-field-fig">
+                <title>VIN Entry Field with Resolved VIN</title>
+                <mediaobject>
+                    <imageobject>
+                        <imagedata fileref="img/vin-entry-field.png"/>
+                    </imageobject>
+                </mediaobject>
+            </figure>
+            <para>Above, <xref linkend="vin-field-fig"/> shows the VIN field with a resolved VIN
+                number (the entries are matching DITA profiling attributes and their values). The
+                VIN number was serialised as XML and then converted to the <code>profiles</code> XML
+                format used for filtering.</para>
         </section>
         <section>
             <title>Granularity</title>
@@ -279,7 +318,6 @@
                 as only applicable to a specific engine type. If the topic was then published using
                 that profile, the step would be included. If a conflicting profile was used, the
                 step would be excluded.</para>
-            <!--TBA Granularity in a topic (steps, images, etc)-->
         </section>
         <section>
             <title>DITAVAL Publishing</title>
@@ -298,10 +336,32 @@
             create a DITA filter, a set of profiles, and convert that set to a series of matching
             VIN strings. This is useful when wanting to know what VIN ranges match vehicles with
             specific variants, model years, and so on.</para>
-        <!--TBA further examples (diagnostics, etc)-->
+        <para>A somewhat contrived example is when service bulletins are issued, for example, for a
+            service recall. Let's say that the manual gear boxes for the large diesel engine for
+            non-EU MY 2022 vehicles all require servicing because of a problem with the oil used. We
+            can then enter the relevant profiling filters and generate the matching VIN ranges,
+            which can then be looked up in an ERP system so mail is only sent to customers who are
+            actually affected.</para>
+        <para>But we can also use the profiling data to quickly look up the relevant workshop manual
+            instructions and parts data, as well as inject the data to diagnostic software,
+            simplifying the shop floor procedures and thus the time required to service the
+            vehicle.</para>
     </section>
     <section>
         <title>In Conclusion</title>
-        <!--TBA thanks and further work-->
+        <para>The functionality described in this paper is live in a production setting and works
+            beautifully. Surprisingly, though, the underlying DITA is currently limiting the
+            usefulness of the portal because the content is not yet rich enough. Simply put,
+            profiles are not used to the extent they can (and should) be. This is an obvious future
+            improvement.</para>
+        <para>Technically, there's certainly more to do with the portal itself, but that's a topic
+            for another paper.</para>
+        <para>For the iXML solution specifically, the next step is very likely going to be to expand
+            the VIN grammar to include more data. For exaple, another manufacturing plant will open,
+            requiring identification, and other vehicle models with additional capabilities will be
+            introduced. These will all require tweaks to the processing of the serialised
+            XML.</para>
+        <para>In closing, iXML has proved to be surprisingly robust and easy to work with, and I
+            have other iXML projects lined up.</para>
     </section>
 </article>
