@@ -62,7 +62,12 @@
             <para>Technical documentation that is profiled using model and variant information also
                 identifiable using a VIN can then be made to match a VIN that expresses a specific
                 configuration. For example, a disassembly task might have this root element:</para>
-            <programlisting>&lt;task modelYear="2022" engineType="petrol-EU6" drive="LHD" platform="commercial" product="station-wagon">
+            <programlisting>&lt;task 
+    modelYear="2022" 
+    engineType="petrol-EU6" 
+    drive="LHD" 
+    platform="commercial" 
+    product="station-wagon">
 	...
 &lt;/task></programlisting>
             <para>This matches a commercial vehicle, a MY 2022, left-hand drive station wagon with a
@@ -283,11 +288,8 @@
                     </imageobject>
                 </mediaobject>
             </figure>
-            <para>Here, the profiling attribute <code>engineType</code><footnote>
-                    <para>The portal can map a profiling attribute name to a display value, but that
-                        feature is not used here.</para>
-                </footnote> is used with a single value, <quote>Petrol_EU4</quote>, but the live
-                database obviously contains more.</para>
+            <para>Here, the profiling attribute <code>Audience</code> is used to list market
+                regions.</para>
         </section>
         <section>
             <title>Filtering with a VIN</title>
