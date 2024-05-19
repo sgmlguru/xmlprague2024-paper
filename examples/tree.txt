@@ -1,0 +1,6 @@
+map - A/
+├── doc 1 - A
+├── doc 2
+└── doc 3 - B
+
+4 directories, 0 files
