@@ -21,7 +21,123 @@
 						<h1>It's Useful After All — VIN Numbers, DITA, and iXML</h1>
 						<h5>ari.nordstrom@gmail.com</h5>
 					</section>
+					
+					<!-- VIN on one hand, DITA profiling on the other; explain why this paper is useful; include portal context -->
+					<section>
+						<h5>Vehicle Identifier Numbers (VIN)</h5>
+						
+						<pre class="xml">
+							<code data-trim data-noescape>SC6GN1BA?NF123456</code>
+						</pre>
+						
+						<aside class="notes">
+							<p>Lists the configuration of a vehicle</p>
+							<p>Identifies the individual vehicle</p>
+						</aside>
+					</section>
+					
+					<!-- VIN -->
+					<section data-background="img/vin-decode.png">
+						<!-- VIN explanation table -->
+						
+						<aside class="notes">
+							<p>Not unlike a URN</p>
+							<p>Significant freedom in the VIN components</p>
+						</aside>
+					</section>
+					
+					<section>
+						<h5>VIN Lookups Are Rarely Standardised</h5>
+						
+						<img src="img/epic-vin.png" alt="A VIN lookup service on the web"/>
+					</section>
+					
+					<!-- DITA profiling -->
+					<section data-background="img/dita-logo.png">
+						<h5>DITA</h5>
+						
+						<pre class="xml">
+							<code data-trim data-noescape data-line-numbers="|2-3">&lt;topic 
+    product=&quot;A&quot; 
+    audience=&quot;expert&quot; &gt;
+    &lt;title&gt;Topic 1&lt;/title&gt;
+    &lt;body&gt;
+        &lt;p&gt;Topic 1 content.&lt;/p&gt;
+    &lt;/body&gt;
+&lt;/topic&gt;</code>
+						</pre>
+						
+						<aside class="notes">
+							<p>DITA provides content variants</p>
+						</aside>
+					</section>
+					
+					<section data-background="img/lego.png">
+						<h5>Building Blocks</h5>
+						
+						<aside class="notes">
+							<p>DITA topics are building blocks</p>
+							<p>Maps combine those blocks into content</p>
+							<p>Profiling (colours) provide context</p>
+							<p>Let me show what I mean</p>
+						</aside>
+					</section>
+					
+					<section>
+						<h5>Including and Excluding Content</h5>
+						
+						<pre class="xml">
+							<code data-trim data-noescape data-line-numbers="|1|2|3|4">map - A
+├── doc 1 - A
+├── doc 2
+└── doc 3 - B</code>
+						</pre>
+						
+						<aside class="notes">
+							<p>Map example</p>
+						</aside>
+					</section>
+					
+					<section>
+						<h5>Resulting Document</h5>
+						
+						<pre class="xml">
+							<code data-trim data-noescape>map - A
+├── doc 1 - A
+├── doc 2</code>
+						</pre>
+						
+						<p class="fragment">Profiles select a subset</p>
+					</section>
+					
+					<section>
+						<h5>VIN vs Profiling</h5>
+						<p>Both describe <em>applicability</em> but in very different ways</p>
+						<p class="fragment">Can we combine the two?</p>
+					</section>
+					
 				</section>
+				
+				
+				<!-- DITA profiling, deeper -->
+				
+				
+				<!-- VIN numbers, deeper -->
+				
+				
+				<!-- Explain iXML, compare to others (e.g. EBNF); explain and admit my reluctance towards iXML -->
+				
+				
+				<!-- VIN grammar -->
+				
+				
+				<!-- Portal basics -->
+				
+				
+				<!-- Portal and VINs -->
+				
+				
+				<!-- Further developments -->
 				
 				
 			</div>
