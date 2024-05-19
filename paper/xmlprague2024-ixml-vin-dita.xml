@@ -4,10 +4,37 @@
 <article xmlns="http://docbook.org/ns/docbook"
     xmlns:xlink="http://www.w3.org/1999/xlink" version="5.1">
     <info>
-        <title>It's Useful After All - VIN Numbers, DITA, and iXML</title>
+        <title>It's Useful After All — VIN Numbers, DITA, and iXML</title>
         <author>
             <personname><firstname>Ari</firstname><surname>Nordström</surname></personname>
         </author>
+        <abstract>
+            <para>Vehicle Identifier Numbers (VIN) are a way to uniquely identify not only a vehicle
+                configuration — model year, engine, type of vehicle, etc — but also the individual.
+                VIN numbers tend to be stamped on engine blocks and are very useful when identifying
+                the configuration at hand when a vehicle arrives in a repair shop, helping plan a
+                service in advance, with the right spare parts, tools, diagnostic procedures,
+                etc.</para>
+            <para>DITA is a topic-based information standard, expressed as an XML vocabulary. It is
+                designed to completely describe a given product and its variants in small building
+                blocks (<quote>topics</quote>) that can be <quote>profiled</quote> to identify
+                variant-specific information. A variant topic might use attributes to define a
+                topic's applicability by stating that the topic <emphasis>applies to product A and
+                    variant B for audience C</emphasis>, which by convention means that any topic
+                describing product D for audience E would be excluded.</para>
+            <para>VIN numbers and DITA profiles, then, are two ways to describe applicability, but
+                in very different ways.</para>
+            <para>Invisible XML (iXML) is a way to express implicit structures as grammars, allowing
+                an instance of any given structure following the grammar to be serialised as XML. It
+                turns out that expressing VIN semantics in an iXML grammar is exactly what we need
+                to marry VIN numbers and DITA profiles.</para>
+        </abstract>
+        <keywordset>
+            <keyword>Invisible XML (iXML)</keyword>
+            <keyword>Vehicle Identifier Number (VIN)</keyword>
+            <keyword>DITA</keyword>
+            <keyword>Content profiling</keyword>
+        </keywordset>
     </info>
     <section>
         <title>Intro</title>
@@ -366,4 +393,13 @@
         <para>In closing, iXML has proved to be surprisingly robust and easy to work with, and I
             have other iXML projects lined up.</para>
     </section>
+    <bibliography>
+        <title>Bibliography</title>
+        <bibliomixed><quote>Invisible XML Specification</quote> [online, fetched on 4 April] <link
+                xlink:href="https://invisiblexml.org/1.0/"/></bibliomixed>
+        <bibliomixed><quote>Invisible XML</quote> [online, fetched on 4 April 2024] <link
+                xlink:href="https://invisiblexml.org/"/></bibliomixed>
+        <bibliomixed><quote>jωiXML processor</quote> [online, fetched on 4 April 2024] <link
+                xlink:href="https://johnlumley.github.io/jwiXML.xhtml"/></bibliomixed>
+    </bibliography>
 </article>
