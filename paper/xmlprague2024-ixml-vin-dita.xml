@@ -109,47 +109,25 @@
 &lt;/task></programlisting>
             <para>This matches a commercial vehicle, a MY 2022, left-hand drive station wagon with a
                 petrol engine for EU. The matching VIN number is a 17-character string that looks
-                something like this: <code>SC6GN1BA?NF123456</code>.</para>
+                something like this: <code>AB1GN1BA?NF123456</code>.</para>
         </section>
     </section>
     <section>
         <title>Profiling and VINs</title>
-        <para>Comparing the VIN - <code>SC6GN1BA?NF123456</code>, for example -  with a DITA profile
+        <para>Comparing the VIN - <code>AB1GN1BA?NF123456</code>, for example - with a DITA profile
             is where it gets interesting.</para>
         <section>
             <title>The VIN As A Grammar</title>
-            <itemizedlist>
-                <para>The VIN string is position-driven, with the various positions encoding vehicle
-                    information:</para>
-                <listitem>
-                    <para>World Manufacturing Identification</para>
-                </listitem>
-                <listitem>
-                    <para>Vehicle Type</para>
-                </listitem>
-                <listitem>
-                    <para>Body Type</para>
-                </listitem>
-                <listitem>
-                    <para>Engine Type</para>
-                </listitem>
-                <listitem>
-                    <para>Drive</para>
-                </listitem>
-                <listitem>
-                    <para>Check Digit</para>
-                </listitem>
-                <listitem>
-                    <para>Year</para>
-                </listitem>
-                <listitem>
-                    <para>Plant</para>
-                </listitem>
-                <listitem>
-                    <para>Sequential Number</para>
-                </listitem>
-            </itemizedlist>
-            <!--TBA VIN table-->
+            <para>The VIN string is position-driven, with the various positions encoding vehicle
+                information:</para>
+            <figure>
+                <title>VIN Decoder</title>
+                <mediaobject>
+                    <imageobject>
+                        <imagedata fileref="img/free-VIN-decoder.jpg" width="100%"/>
+                    </imageobject>
+                </mediaobject>
+            </figure>
             <para>The allowed values are specified for each group and can be expressed as a grammar.
                 EBNF notation, for example, has been used by manufacturers in the past, even though
                 most of them default to an Excel spreadsheet or an ERP system.</para>
@@ -166,12 +144,45 @@
             <para>iXML allows us to write <emphasis role="italic">grammars</emphasis> for those
                 various implicit structures and then use an iXML implementation to serialise an
                 instance of that grammar in XML format.</para>
-            <!--TBA iXML VIN grammar-->
+            <programlisting>vin: manufacturer-id, vehicleType, platform, engineType, drive, check-digit, modelYear, plant, sequence-number .
+-question-mark: "?" .
+-zero-or-many: "*" .
+manufacturer-id: "AB1" .
+commercial-vehicle: "GN" .
+private-vehicle: "GM" .
+vehicleType: commercial-vehicle; private-vehicle; question-mark, question-mark .
+sv: "1" .
+uv: "2" .
+pu: "3" .
+cc: "4" .
+platform: sv; uv; pu; cc; question-mark .
+petrol: ["A"-"C"] .
+diesel: ["D"-"E"] .
+avf: "F" .
+engineType: petrol; diesel; avf; question-mark .
+lhd: "A" .
+rhd: "B" .
+drive: lhd; rhd; question-mark .
+check-digit: "?" .
+y22: "N"  .
+y23: "P"  .
+y24: "R"  .
+y25: "S"  .
+modelYear: y22; y23; y24; y25; question-mark .
+plant: "F"; question-mark .
+-number: ["0"-"9"] .
+-seq1: "00000", ["1"-"9"] .
+-seq2: "0000", ["1"-"9"], number .
+-seq3: "000", ["1"-"9"], number, number .
+-seq4: "00", ["1"-"9"], number, number, number .
+-seq5: "0", ["1"-"9"], number, number, number, number .
+-seq6: ["1"-"9"], number, number, number, number, number .
+sequence-number: seq1; seq2; seq3; seq4; seq5; seq6; zero-or-many; () .</programlisting>
             <para>Thus, the VIN string as defined for a specific manufacturer can be expressed as an
-                iXML grammar, meaning that a string such as <code>SC6GN1BA?NF123456</code> can be
+                iXML grammar, meaning that a string such as <code>AB1GN1BA?NF123456</code> can be
                 output in XML:</para>
             <programlisting>&lt;vin>
-   &lt;manufacturer-id>SC6&lt;/manufacturer-id>
+   &lt;manufacturer-id>AB1&lt;/manufacturer-id>
    &lt;vehicleType>
       &lt;commercial-vehicle>GN&lt;/commercial-vehicle>
    &lt;/vehicleType>
