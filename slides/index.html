@@ -38,7 +38,7 @@
 						<h5>An Example</h5>
 						
 						<pre class="xml">
-							<code data-trim data-noescape>SC6GN1BA?NF123456</code>
+							<code data-trim data-noescape>AB1GN1BA?NF123456</code>
 						</pre>
 						
 						<aside class="notes">
@@ -195,6 +195,38 @@ plant: "F"; question-mark .
 -seq5: "0", ["1"-"9"], number, number, number, number .
 -seq6: ["1"-"9"], number, number, number, number, number .
 sequence-number: seq1; seq2; seq3; seq4; seq5; seq6; zero-or-many; () .</code>
+						</pre>
+					</section>
+					
+					<section data-background="img/ixml-logo.png" data-background-size="50%" data-background-opacity="0.25">
+						<pre class="xml">
+							<code data-trim data-noescape>AB1GN1BA?NF123456</code>
+						</pre>
+					</section>
+					
+					<section data-background="img/ixml-logo.png" data-background-size="50%" data-background-opacity="0.25">
+						<pre class="xml" style="font-size: 11pt">
+							<code data-trim data-noescape>&lt;vin&gt;
+    &lt;manufacturer-id&gt;AB1&lt;/manufacturer-id&gt;
+    &lt;vehicleType&gt;
+        &lt;commercial-vehicle&gt;GN&lt;/commercial-vehicle&gt;
+    &lt;/vehicleType&gt;
+    &lt;platform&gt;
+        &lt;sv&gt;1&lt;/sv&gt;
+    &lt;/platform&gt;
+    &lt;engineType&gt;
+        &lt;petrol&gt;B&lt;/petrol&gt;
+    &lt;/engineType&gt;
+    &lt;drive&gt;
+        &lt;lhd&gt;A&lt;/lhd&gt;
+    &lt;/drive&gt;
+    &lt;check-digit&gt;?&lt;/check-digit&gt;
+    &lt;modelYear&gt;
+        &lt;y22&gt;N&lt;/y22&gt;
+    &lt;/modelYear&gt;
+    &lt;plant&gt;F&lt;/plant&gt;
+    &lt;sequence-number&gt;123456&lt;/sequence-number&gt;
+&lt;/vin&gt;</code>
 						</pre>
 					</section>
 					
