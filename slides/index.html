@@ -22,9 +22,20 @@
 						<h5>ari.nordstrom@gmail.com</h5>
 					</section>
 					
+					
+				</section>
+				
+				
+				<!-- VIN Intro -->
+				<section>
+					
+					<section>
+						<h3>Vehicle Identifier Numbers (VIN)</h3>
+					</section>
+					
 					<!-- VIN on one hand, DITA profiling on the other; explain why this paper is useful; include portal context -->
 					<section>
-						<h5>Vehicle Identifier Numbers (VIN)</h5>
+						<h5>An Example</h5>
 						
 						<pre class="xml">
 							<code data-trim data-noescape>SC6GN1BA?NF123456</code>
@@ -52,9 +63,18 @@
 						<img src="img/epic-vin.png" alt="A VIN lookup service on the web"/>
 					</section>
 					
+				</section>
+				
+				
+				<section>
+					
+					<section data-background="img/dita-logo.png">
+						<h3>DITA Profiling</h3>
+					</section>
+					
 					<!-- DITA profiling -->
 					<section data-background="img/dita-logo.png">
-						<h5>DITA</h5>
+						<h5>An Example</h5>
 						
 						<pre class="xml">
 							<code data-trim data-noescape data-line-numbers="|2-3">&lt;topic 
@@ -83,7 +103,7 @@
 						</aside>
 					</section>
 					
-					<section>
+					<section data-background="img/dita-logo.png">
 						<h5>Including and Excluding Content</h5>
 						
 						<pre class="xml">
@@ -98,7 +118,7 @@
 						</aside>
 					</section>
 					
-					<section>
+					<section data-background="img/dita-logo.png">
 						<h5>Resulting Document</h5>
 						
 						<pre class="xml">
@@ -110,7 +130,7 @@
 						<p class="fragment">Profiles select a subset</p>
 					</section>
 					
-					<section>
+					<section data-background="img/dita-logo.png">
 						<h5>VIN vs Profiling</h5>
 						<p>Both describe <em>applicability</em> but in very different ways</p>
 						<p class="fragment">Can we combine the two?</p>
@@ -120,12 +140,65 @@
 				
 				
 				<!-- DITA profiling, deeper -->
-				
-				
 				<!-- VIN numbers, deeper -->
 				
 				
 				<!-- Explain iXML, compare to others (e.g. EBNF); explain and admit my reluctance towards iXML -->
+				<section>
+					
+					<section data-background="img/ixml-logo.png" data-background-size="50%" data-background-opacity="0.25">
+						<h3>iXML</h3>
+					</section>
+					
+					<section data-background="img/ixml-logo.png" data-background-size="50%" data-background-opacity="0.25">
+						<q>Invisible XML is a language for describing the implicit structure of data, and a set of technologies for making that structure explicit as XML markup.</q>
+						<p class="fragment"><a href="https://invisiblexml.org/" target="_blank">invisiblexml.org</a></p>
+					</section>
+					
+					<!--<section data-background="img/ixml-logo.png" data-background-size="50%" data-background-opacity="0.25">
+						
+					</section>-->
+					
+					<section data-background="img/ixml-logo.png" data-background-size="50%" data-background-opacity="0.25">
+						<pre class="txt" style="font-size: 9pt">
+							<code data-trim data-noescape>vin: manufacturer-id, vehicleType, platform, engineType, drive, check-digit, modelYear, plant, sequence-number .
+-question-mark: "?" .
+-zero-or-many: "*" .
+manufacturer-id: "AB1" .
+commercial-vehicle: "GN" .
+private-vehicle: "GM" .
+vehicleType: commercial-vehicle; private-vehicle; question-mark, question-mark .
+sv: "1" .
+uv: "2" .
+pu: "3" .
+cc: "4" .
+platform: sv; uv; pu; cc; question-mark .
+petrol: ["A"-"C"] .
+diesel: ["D"-"E"] .
+avf: "F" .
+engineType: petrol; diesel; avf; question-mark .
+lhd: "A" .
+rhd: "B" .
+drive: lhd; rhd; question-mark .
+check-digit: "?" .
+y22: "N"  .
+y23: "P"  .
+y24: "R"  .
+y25: "S"  .
+modelYear: y22; y23; y24; y25; question-mark .
+plant: "F"; question-mark .
+-number: ["0"-"9"] .
+-seq1: "00000", ["1"-"9"] .
+-seq2: "0000", ["1"-"9"], number .
+-seq3: "000", ["1"-"9"], number, number .
+-seq4: "00", ["1"-"9"], number, number, number .
+-seq5: "0", ["1"-"9"], number, number, number, number .
+-seq6: ["1"-"9"], number, number, number, number, number .
+sequence-number: seq1; seq2; seq3; seq4; seq5; seq6; zero-or-many; () .</code>
+						</pre>
+					</section>
+					
+				</section>
 				
 				
 				<!-- VIN grammar -->
