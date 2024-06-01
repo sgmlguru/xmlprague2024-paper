@@ -131,9 +131,18 @@
 					</section>
 					
 					<section data-background="img/dita-logo.png">
-						<h5>VIN vs Profiling</h5>
-						<p>Both describe <em>applicability</em> but in very different ways</p>
-						<p class="fragment">Can we combine the two?</p>
+						<h5>Profiles Applicable Anywhere</h5>
+						
+						<pre class="xml">
+							<code data-trim data-noescape data-line-numbers="|4|5|6">&lt;topic&gt;
+    &lt;title&gt;&lt;/title&gt;
+    &lt;body&gt;
+        &lt;p product=&quot;A&quot;&gt;This applies to A.&lt;/p&gt;
+        &lt;p product=&quot;B&quot;&gt;This applies to B.&lt;/p&gt;
+        &lt;p&gt;This applies to everything.&lt;/p&gt;
+    &lt;/body&gt;
+&lt;/topic&gt;</code>
+						</pre>
 					</section>
 					
 				</section>
@@ -141,6 +150,135 @@
 				
 				<!-- DITA profiling, deeper -->
 				<!-- VIN numbers, deeper -->
+				
+				
+				<!-- Portal -->
+				<section>
+					
+					<section>
+						<h3>The Portal</h3>
+						
+						<aside class="notes">
+							<p>The setting here is an online portal</p>
+							<p>DITA authored elsewhere, published on the fly</p>
+						</aside>
+					</section>
+					
+					<section>
+						<img src="img/portal-ui.png" alt="Portal UI screenshot"/>
+						
+						<aside class="notes">
+							<p>We're converting the DITA to HTML on View</p>
+							<p>The DITA lives in an XML DB</p>
+							<p>All XML tech. Such as the file list.</p>
+						</aside>
+					</section>
+					
+					<section>
+						<h5>The File List</h5>
+						
+						<pre class="xml" style="font-size: 9pt;">
+							<code data-trim data-noescape>&lt;collection uri=&quot;/db/test/content&quot;&gt;
+    ...
+    &lt;file 
+        type=&quot;topic&quot;
+        uri=&quot;/db/test/content/dita-examples/01/second_portal_topic.dita&quot;
+        dita-content-type=&quot;content&quot; 
+        product=&quot;A B&quot; 
+        audience=&quot;D E&quot;
+        root-profiles=&quot;product(A B) audience(D E)&quot; 
+        include=&quot;true&quot;
+        include-profiles=&quot;product(B)&quot;&gt;
+        &lt;title&gt;Topic 2&lt;/title&gt;
+    &lt;/file&gt;
+    
+    &lt;file 
+        type=&quot;topic&quot;
+        uri=&quot;/db/test/content/dita-examples/02/topic_3.dita&quot; 
+        name=&quot;topic_3.dita&quot;
+        dita-content-type=&quot;content&quot; 
+        product=&quot;A&quot; 
+        audience=&quot;novice&quot;
+        root-profiles=&quot;product(A) audience(novice)&quot; 
+        include=&quot;false&quot;
+        exclude-profiles=&quot;product&quot; 
+        include-profiles=&quot;&quot;&gt;
+        &lt;title&gt;Topic 3&lt;/title&gt;
+    &lt;/file&gt;
+    ...
+    &lt;profiles&gt;
+        &lt;product&gt;
+            &lt;value&gt;B&lt;/value&gt;
+        &lt;/product&gt;
+        &lt;platform/&gt;
+        &lt;audience/&gt;
+    &lt;/profiles&gt;
+&lt;/collection&gt;</code>
+						</pre>
+					</section>
+					
+					<section>
+						<h5>A Single File</h5>
+						
+						<pre class="xml" style="font-size: 14pt">
+							<code data-trim data-noescape data-line-numbers="|4|6|7|8">&lt;file 
+    selected=&quot;&quot; 
+    type=&quot;topic&quot;
+    uri=&quot;/db/test/content/dita-examples/01/second_portal_topic.dita&quot;
+    dita-content-type=&quot;content&quot; 
+    product=&quot;A B&quot; 
+    audience=&quot;D E&quot;
+    root-profiles=&quot;product(A B) audience(D E)&quot; 
+    include=&quot;true&quot;
+    include-profiles=&quot;product(B)&quot;&gt;
+    &lt;title&gt;Topic 2&lt;/title&gt;
+&lt;/file&gt;</code>
+						</pre>
+						
+						<aside class="notes">
+							<p>Product is valid for A and B</p>
+							<p>Audience is valid for D</p>
+							<p>The root profiles are...</p>
+						</aside>
+					</section>
+					
+					<section>
+						<h5>Filtering</h5>
+						
+						<img src="img/filtering-values.png" alt="Filtering checkboxes in the UI"/>
+						
+						<aside class="notes">
+							<p>In an XML-based UI, easy to list available values for profile</p>
+							<p>The values here are actually used</p>
+						</aside>
+					</section>
+					
+					<section>
+						<h5>File List Filter</h5>
+						
+						<pre class="xml">
+							<code data-trim data-noescape data-line-numbers="|2-4">&lt;profiles&gt;
+    &lt;product&gt;
+        &lt;value&gt;B&lt;/value&gt;
+    &lt;/product&gt;
+    &lt;platform/&gt;
+    &lt;audience/&gt;
+&lt;/profiles&gt;</code>
+						</pre>
+						
+						<aside class="notes">
+							<p>If you select one (or more) values...</p>
+							<p>...you filter the file list</p>
+						</aside>
+					</section>
+					
+					<section data-background="img/dita-logo.png">
+						<h5>VIN vs Profiling</h5>
+						<p>Both describe <em>applicability</em> but in very different ways</p>
+						<p class="fragment">Can we combine the two?</p>
+					</section>
+					
+				</section>
 				
 				
 				<!-- Explain iXML, compare to others (e.g. EBNF); explain and admit my reluctance towards iXML -->
@@ -153,6 +291,12 @@
 					<section data-background="img/ixml-logo.png" data-background-size="50%" data-background-opacity="0.25">
 						<q>Invisible XML is a language for describing the implicit structure of data, and a set of technologies for making that structure explicit as XML markup.</q>
 						<p class="fragment"><a href="https://invisiblexml.org/" target="_blank">invisiblexml.org</a></p>
+					</section>
+					
+					<section data-background="img/ixml-logo.png" data-background-size="50%" data-background-opacity="0.25">
+						<h5>VIN Numbers Are Context-free Grammars</h5>
+						
+						<img src="img/free-VIN-decoder.jpg" alt="VIN number position decoding"/>
 					</section>
 					
 					<!--<section data-background="img/ixml-logo.png" data-background-size="50%" data-background-opacity="0.25">
@@ -228,18 +372,39 @@ sequence-number: seq1; seq2; seq3; seq4; seq5; seq6; zero-or-many; () .</code>
     &lt;sequence-number&gt;123456&lt;/sequence-number&gt;
 &lt;/vin&gt;</code>
 						</pre>
+						
+						<aside class="notes">
+							<p>Now we're getting somewhere</p>
+						</aside>
 					</section>
 					
 				</section>
 				
 				
-				<!-- VIN grammar -->
-				
-				
-				<!-- Portal basics -->
-				
-				
 				<!-- Portal and VINs -->
+				<section>
+					
+					<section>
+						<h3>Combining VIN and Profiling</h3>
+						
+						<aside class="notes">
+							<p>So I added a VIN field and CoffeePot</p>
+						</aside>
+					</section>
+					
+					<section>
+						<h5>VIN Search</h5>
+						
+						<img style="background-color: white" src="img/vin-entry-field.png" alt="VIN number entry field in the portal UI"/>
+					</section>
+					
+					<section>
+						<h5>Transformation</h5>
+						
+						
+					</section>
+					
+				</section>
 				
 				
 				<!-- Further developments -->
