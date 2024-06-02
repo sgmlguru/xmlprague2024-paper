@@ -1,0 +1,12 @@
+<val>
+   <prop action="exclude" att="vehicleType"/>
+   <prop action="include" att="vehicleType" val="CV"/>
+   <prop action="exclude" att="platform"/>
+   <prop action="include" att="platform" val="LWB_SW"/>
+   <prop action="exclude" att="engineType"/>
+   <prop action="include" att="engineType" val="Petrol_EU4"/>
+   <prop action="exclude" att="drive"/>
+   <prop action="include" att="drive" val="LHD"/>
+   <prop action="exclude" att="modelYear"/>
+   <prop action="include" att="modelYear" val="2022"/>
+</val>

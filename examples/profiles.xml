@@ -1,0 +1,17 @@
+<profiles>
+   <vehicleType attr="vehicleType" alias="vehicleType">
+      <value>CV</value>
+   </vehicleType>
+   <platform attr="platform" alias="platform">
+      <value>LWB_SW</value>
+   </platform>
+   <engineType attr="engineType" alias="engineType">
+      <value>Petrol_EU4</value>
+   </engineType>
+   <drive attr="drive" alias="drive">
+      <value>LHD</value>
+   </drive>
+   <modelYear attr="modelYear" alias="modelYear">
+      <value>2022</value>
+   </modelYear>
+</profiles>

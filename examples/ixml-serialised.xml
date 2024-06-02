@@ -1,0 +1,21 @@
+<vin>
+    <manufacturer-id>AB1</manufacturer-id>
+    <vehicleType>
+        <commercial-vehicle>GN</commercial-vehicle>
+    </vehicleType>
+    <platform>
+        <sv>1</sv>
+    </platform>
+    <engineType>
+        <petrol>B</petrol>
+    </engineType>
+    <drive>
+        <lhd>A</lhd>
+    </drive>
+    <check-digit>?</check-digit>
+    <modelYear>
+        <y22>N</y22>
+    </modelYear>
+    <plant>F</plant>
+    <sequence-number>123456</sequence-number>
+</vin>

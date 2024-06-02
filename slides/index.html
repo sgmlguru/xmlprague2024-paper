@@ -401,15 +401,58 @@ sequence-number: seq1; seq2; seq3; seq4; seq5; seq6; zero-or-many; () .</code>
 					</section>
 					
 					<section data-background="img/vin-number.jpg">
-						<h5>Transformation</h5>
+						<h5>Transformations</h5>
 						
+						<div class="r-stack">
+							<img src="img/transform.png" alt="iXML serialisation" class="fragment"/>
+							<img src="img/profiles.png" alt="Tranforming from iXML serialisation to profiles XML format" class="fragment"/>
+							<img src="img/ditaval.png" alt="Transform to a DITAVAL filter" class="fragment"/>
+							<img src="img/vin.png" alt="Roundtrip back to the VIN number we started from" class="fragment"/>
+						</div>
 						
+						<aside class="notes">
+							<p>Start from iXML serialisation</p>
+							<p>Convert to profiles for portal filtering</p>
+							<p>Convert to DITAVAL filter for publishing</p>
+							<p>...but also back to VIN number</p>
+						</aside>
+					</section>
+					
+					<section data-background="img/vin-number.jpg">
+						<q>Given the entered profile, give me the matching VIN numbers or ranges!</q>
+						
+						<aside class="notes">
+							<p>The roundtrip is a simple XSL stylesheet</p>
+							<p>VIN ranges are useful in ERP systems</p>
+							<p>Only send  service bulletin to those affected</p>
+							<p>Locate spare parts via portal ERP connection</p>
+						</aside>
 					</section>
 					
 				</section>
 				
 				
 				<!-- Further developments -->
+				<section data-background="img/jag-coventry.jpg" data-background-opacity="0.3" data-background-size="110%">
+					
+					<section>
+						<h5>In Closing</h5>
+					</section>
+					
+					<section>
+						<h5>Next steps</h5>
+						<ul>
+							<li class="fragment">Enrich the DITA</li>
+							<li class="fragment">Expand the VIN grammar</li>
+							<li class="fragment">Add VIN-based integration with ERP system(s)</li>
+						</ul>
+					</section>
+					
+					<section>
+						<h5>Thank you!</h5>
+					</section>
+					
+				</section>
 				
 				
 			</div>
