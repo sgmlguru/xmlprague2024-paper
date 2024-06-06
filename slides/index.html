@@ -5,13 +5,22 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
 		<title>It's Useful After All — VIN Numbers, DITA, and iXML</title>
+		
+		<!-- Uncomment for filesystem run -->
 
-		<link rel="stylesheet" href="../../reveal.js/dist/reset.css">
+		<!--<link rel="stylesheet" href="../../reveal.js/dist/reset.css">
 		<link rel="stylesheet" href="../../reveal.js/dist/reveal.css">
 		<link rel="stylesheet" href="../../reveal.js/dist/theme/black.css">
 		
+		<!-\- Theme used for syntax highlighted code -\->
+		<link rel="stylesheet" href="../../reveal.js/plugin/highlight/monokai.css">-->
+		
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/theme/black.css">
+		
 		<!-- Theme used for syntax highlighted code -->
-		<link rel="stylesheet" href="../../reveal.js/plugin/highlight/monokai.css">
+		<link rel="stylesheet" href="plugin/highlight/monokai.css">
 	</head>
 	<body>
 		<div class="reveal">
@@ -131,7 +140,7 @@
 					</section>
 					
 					<section data-background="img/dita-logo.png">
-						<h5>Profiles Applicable Anywhere</h5>
+						<h5>Multi-profile Topic</h5>
 						
 						<pre class="xml">
 							<code data-trim data-noescape data-line-numbers="|4|5|6">&lt;topic&gt;
@@ -139,6 +148,20 @@
     &lt;body&gt;
         &lt;p product=&quot;A&quot;&gt;This applies to A.&lt;/p&gt;
         &lt;p product=&quot;B&quot;&gt;This applies to B.&lt;/p&gt;
+        &lt;p&gt;This applies to everything.&lt;/p&gt;
+    &lt;/body&gt;
+&lt;/topic&gt;</code>
+						</pre>
+					</section>
+					
+					<section data-background="img/dita-logo.png">
+						<h5>Profile A Only</h5>
+						
+						<pre class="xml">
+							<code data-trim data-noescape>&lt;topic&gt;
+    &lt;title&gt;&lt;/title&gt;
+    &lt;body&gt;
+        &lt;p product=&quot;A&quot;&gt;This applies to A.&lt;/p&gt;
         &lt;p&gt;This applies to everything.&lt;/p&gt;
     &lt;/body&gt;
 &lt;/topic&gt;</code>
@@ -221,7 +244,7 @@
 						<h5>A Single File</h5>
 						
 						<pre class="xml" style="font-size: 14pt">
-							<code data-trim data-noescape data-line-numbers="|4|6|7|8">&lt;file 
+							<code data-trim data-noescape data-line-numbers="|4|6|7|8|11">&lt;file 
     selected=&quot;&quot; 
     type=&quot;topic&quot;
     uri=&quot;/db/test/content/dita-examples/01/second_portal_topic.dita&quot;
@@ -457,12 +480,22 @@ sequence-number: seq1; seq2; seq3; seq4; seq5; seq6; zero-or-many; () .</code>
 				
 			</div>
 		</div>
-
-		<script src="../../reveal.js/dist/reveal.js"></script>
+		
+		
+		<!-- Uncomment for filesystem run -->
+		
+		<!--<script src="../../reveal.js/dist/reveal.js"></script>
 		<script src="../../reveal.js/plugin/notes/notes.js"></script>
 		<script src="../../reveal.js/plugin/markdown/markdown.js"></script>
 		<script src="../../reveal.js/plugin/highlight/highlight.js"></script>
-		<script src="../../reveal.js/plugin/zoom/zoom.js"></script>
+		<script src="../../reveal.js/plugin/zoom/zoom.js"></script>-->
+		
+		
+		<script src="dist/reveal.js"></script>
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/markdown/markdown.js"></script>
+		<script src="plugin/highlight/highlight.js"></script>
+		<script src="plugin/zoom/zoom.js"></script>
 		
 		
 		<script>
